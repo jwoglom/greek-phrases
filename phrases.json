@@ -1,0 +1,52 @@
+[
+  {
+    "greek": "Γειά σου",
+    "pronunciation": "Ya sou",
+    "english": "Hello"
+  },
+  {
+    "greek": "Καλημέρα",
+    "pronunciation": "Kaliméra",
+    "english": "Good morning"
+  },
+  {
+    "greek": "Καλησπέρα",
+    "pronunciation": "Kalispera",
+    "english": "Good evening"
+  },
+  {
+    "greek": "Παρακαλώ",
+    "pronunciation": "Parakaló",
+    "english": "Please / You're welcome"
+  },
+  {
+    "greek": "Ευχαριστώ",
+    "pronunciation": "Efharistó",
+    "english": "Thank you"
+  },
+  {
+    "greek": "Ναι",
+    "pronunciation": "Ne",
+    "english": "Yes"
+  },
+  {
+    "greek": "Όχι",
+    "pronunciation": "Óhi",
+    "english": "No"
+  },
+  {
+    "greek": "Συγγνώμη",
+    "pronunciation": "Signómi",
+    "english": "Excuse me / Sorry"
+  },
+  {
+    "greek": "Μιλάτε Αγγλικά;",
+    "pronunciation": "Miláte Angliká?",
+    "english": "Do you speak English?"
+  },
+  {
+    "greek": "Πόσο κάνει;",
+    "pronunciation": "Póso káni?",
+    "english": "How much does it cost?"
+  }
+]
