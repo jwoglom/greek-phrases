@@ -121,22 +121,49 @@ function renderPhrases(data) {
     return;
   }
 
-  groups.forEach(group => {
+  const collapseOnMobile =
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(max-width: 640px)').matches;
+
+  groups.forEach((group, groupIndex) => {
     const section = document.createElement('section');
     section.className = 'phrase-group';
 
-    if (group.category) {
-      const heading = document.createElement('h2');
-      heading.className = 'phrase-group-title';
-      heading.textContent = group.category;
-      section.append(heading);
-    }
+    const heading = document.createElement('h2');
+    heading.className = 'phrase-group-heading';
+
+    const toggleButton = document.createElement('button');
+    toggleButton.type = 'button';
+    toggleButton.className = 'phrase-group-toggle';
+
+    const contentId = `phrase-group-content-${groupIndex}`;
+    toggleButton.setAttribute('aria-controls', contentId);
+
+    const title = document.createElement('span');
+    title.className = 'phrase-group-title';
+    title.textContent = group.category || `Phrase group ${groupIndex + 1}`;
+    toggleButton.append(title);
+
+    const icon = document.createElement('span');
+    icon.className = 'phrase-group-toggle-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.innerHTML =
+      '<svg viewBox="0 0 12 8" width="12" height="8" focusable="false" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    toggleButton.append(icon);
+
+    heading.append(toggleButton);
+    section.append(heading);
+
+    const content = document.createElement('div');
+    content.className = 'phrase-group-content';
+    content.id = contentId;
 
     if (group.description) {
       const description = document.createElement('p');
       description.className = 'phrase-group-description';
       description.textContent = group.description;
-      section.append(description);
+      content.append(description);
     }
 
     const list = document.createElement('ul');
@@ -148,7 +175,25 @@ function renderPhrases(data) {
     });
 
     if (list.children.length) {
-      section.append(list);
+      content.append(list);
+      section.append(content);
+
+      const startCollapsed = collapseOnMobile && groupIndex > 0;
+      if (startCollapsed) {
+        section.classList.add('is-collapsed');
+        toggleButton.setAttribute('aria-expanded', 'false');
+        content.hidden = true;
+      } else {
+        toggleButton.setAttribute('aria-expanded', 'true');
+        content.hidden = false;
+      }
+
+      toggleButton.addEventListener('click', () => {
+        const collapsed = section.classList.toggle('is-collapsed');
+        toggleButton.setAttribute('aria-expanded', String(!collapsed));
+        content.hidden = collapsed;
+      });
+
       groupsContainer.append(section);
     }
   });
