@@ -20,7 +20,7 @@ body {
 
 main {
   width: 100%;
-  max-width: 640px;
+  max-width: 760px;
 }
 
 h1 {
@@ -163,6 +163,91 @@ h1 {
   gap: clamp(0.65rem, 2.5vw, 0.9rem);
 }
 
+.practice-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.85rem, 2.5vw, 1.2rem);
+}
+
+.practice-row {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  padding: clamp(1rem, 3vw, 1.4rem);
+  display: grid;
+  gap: clamp(0.75rem, 2vw, 1.1rem);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.practice-row-title {
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw + 0.9rem, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.practice-row-summary {
+  margin: 0;
+  color: #52606d;
+  line-height: 1.5;
+}
+
+.practice-row-vocabulary {
+  display: grid;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.practice-row-vocabulary .phrase-button {
+  height: 100%;
+}
+
+.practice-row-examples {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding-top: clamp(0.75rem, 2vw, 1rem);
+  display: grid;
+  gap: clamp(0.5rem, 1.8vw, 0.75rem);
+}
+
+.practice-row-examples-label {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #52606d;
+}
+
+.practice-examples-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.55rem, 1.6vw, 0.75rem);
+}
+
+.practice-example {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.practice-example-greek {
+  font-weight: 600;
+}
+
+.practice-example-pronunciation {
+  color: #8291a5;
+  font-size: clamp(0.9rem, 2vw, 0.95rem);
+}
+
+.practice-example-english {
+  color: #52606d;
+  font-size: clamp(0.92rem, 2vw, 1rem);
+}
+
 .empty-state {
   margin: 0;
   text-align: center;
@@ -297,6 +382,32 @@ h1 {
 
   .phrase-english {
     color: #94a3b8;
+  }
+
+  .practice-row {
+    background: rgba(30, 41, 59, 0.78);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .practice-row-summary {
+    color: #94a3b8;
+  }
+
+  .practice-row-examples {
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .practice-row-examples-label {
+    color: #cbd5f5;
+  }
+
+  .practice-example-pronunciation {
+    color: #cbd5f5;
+  }
+
+  .practice-example-english {
+    color: #cbd5f5;
   }
 }
 

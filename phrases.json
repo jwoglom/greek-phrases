@@ -1,251 +1,351 @@
 [
   {
-    "category": "Greetings & Essentials",
-    "description": "Key greetings and polite expressions for everyday encounters.",
-    "phrases": [
+    "category": "Greetings",
+    "description": "Practice the greetings you already know by pairing them with real-life situations.",
+    "rows": [
       {
-        "greek": "Γειά σου",
-        "pronunciation": "Ya sou",
-        "english": "Hello (informal)"
+        "title": "Yeia sou / Yeia sas",
+        "summary": "Switch between informal and formal hello depending on who you're greeting.",
+        "items": [
+          {
+            "greek": "Γεια σου",
+            "pronunciation": "Ya sou",
+            "english": "Hello (informal)"
+          },
+          {
+            "greek": "Γεια σας",
+            "pronunciation": "Ya sas",
+            "english": "Hello (formal / plural)"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Γεια σου, Μαρία!",
+            "pronunciation": "Ya sou, María!",
+            "english": "Hello, Maria!"
+          },
+          {
+            "greek": "Γεια σας, κύριε Παύλο.",
+            "pronunciation": "Ya sas, kýrie Pavlo.",
+            "english": "Hello, Mr. Pavlos."
+          }
+        ]
       },
       {
-        "greek": "Γειά σας",
-        "pronunciation": "Ya sas",
-        "english": "Hello (formal / plural)"
+        "title": "Kalimera / kalispera / kalinikhta",
+        "summary": "Match your greeting with the time of day.",
+        "items": [
+          {
+            "greek": "Καλημέρα",
+            "pronunciation": "Kaliméra",
+            "english": "Good morning"
+          },
+          {
+            "greek": "Καλησπέρα",
+            "pronunciation": "Kalispera",
+            "english": "Good evening"
+          },
+          {
+            "greek": "Καληνύχτα",
+            "pronunciation": "Kaliníkhta",
+            "english": "Good night"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Καλημέρα! Τι κάνεις;",
+            "pronunciation": "Kaliméra! Ti kánis?",
+            "english": "Good morning! How are you?"
+          },
+          {
+            "greek": "Καλησπέρα σε όλους.",
+            "pronunciation": "Kalispera se ólous.",
+            "english": "Good evening, everyone."
+          },
+          {
+            "greek": "Καληνύχτα και όνειρα γλυκά.",
+            "pronunciation": "Kaliníkhta kai ónira glyká.",
+            "english": "Good night and sweet dreams."
+          }
+        ]
       },
       {
-        "greek": "Καλημέρα",
-        "pronunciation": "Kaliméra",
-        "english": "Good morning"
+        "title": "Ti kanete / kala",
+        "summary": "Ask how someone is doing and respond with confidence.",
+        "items": [
+          {
+            "greek": "Τι κάνετε;",
+            "pronunciation": "Ti kánete?",
+            "english": "How are you? (formal)"
+          },
+          {
+            "greek": "Καλά",
+            "pronunciation": "Kalá",
+            "english": "Well / fine"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Τι κάνετε σήμερα;",
+            "pronunciation": "Ti kánete símera?",
+            "english": "How are you today?"
+          },
+          {
+            "greek": "Είμαι καλά, ευχαριστώ.",
+            "pronunciation": "Íme kalá, efharistó.",
+            "english": "I'm well, thank you."
+          },
+          {
+            "greek": "Καλά, κι εσείς;",
+            "pronunciation": "Kalá, ki esís?",
+            "english": "I'm well, and you?"
+          }
+        ]
       },
       {
-        "greek": "Καλησπέρα",
-        "pronunciation": "Kalispera",
-        "english": "Good evening"
+        "title": "Parakalo / Efharisto",
+        "summary": "Balance politeness and gratitude in everyday exchanges.",
+        "items": [
+          {
+            "greek": "Παρακαλώ",
+            "pronunciation": "Parakaló",
+            "english": "Please / you're welcome"
+          },
+          {
+            "greek": "Ευχαριστώ",
+            "pronunciation": "Efharistó",
+            "english": "Thank you"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Ένα νερό, παρακαλώ.",
+            "pronunciation": "Éna neró, parakaló.",
+            "english": "One water, please."
+          },
+          {
+            "greek": "Ευχαριστώ για τη βοήθεια.",
+            "pronunciation": "Efharistó gia ti voítheia.",
+            "english": "Thank you for the help."
+          },
+          {
+            "greek": "Παρακαλώ, περάστε.",
+            "pronunciation": "Parakaló, peráste.",
+            "english": "Please, come in."
+          }
+        ]
       },
       {
-        "greek": "Καληνύχτα",
-        "pronunciation": "Kaliníkhta",
-        "english": "Good night"
-      },
-      {
-        "greek": "Τι κάνετε;",
-        "pronunciation": "Ti kánete?",
-        "english": "How are you?"
-      },
-      {
-        "greek": "Καλά, ευχαριστώ.",
-        "pronunciation": "Kalá, efharistó.",
-        "english": "I'm well, thank you."
-      },
-      {
-        "greek": "Παρακαλώ",
-        "pronunciation": "Parakaló",
-        "english": "Please / You're welcome"
-      },
-      {
-        "greek": "Ευχαριστώ",
-        "pronunciation": "Efharistó",
-        "english": "Thank you"
-      },
-      {
-        "greek": "Συγγνώμη",
-        "pronunciation": "Signómi",
-        "english": "Excuse me / Sorry"
-      },
-      {
-        "greek": "Ναι",
-        "pronunciation": "Ne",
-        "english": "Yes"
-      },
-      {
-        "greek": "Όχι",
-        "pronunciation": "Óhi",
-        "english": "No"
+        "title": "Signomi",
+        "summary": "Apologize or get someone's attention politely.",
+        "items": [
+          {
+            "greek": "Συγγνώμη",
+            "pronunciation": "Signómi",
+            "english": "Sorry / excuse me"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Συγγνώμη για την καθυστέρηση.",
+            "pronunciation": "Signómi gia tin kathystérisi.",
+            "english": "Sorry for the delay."
+          },
+          {
+            "greek": "Συγγνώμη, μπορώ να περάσω;",
+            "pronunciation": "Signómi, boró na peráso?",
+            "english": "Excuse me, may I pass?"
+          },
+          {
+            "greek": "Συγγνώμη, δεν το είδα.",
+            "pronunciation": "Signómi, den to ída.",
+            "english": "Sorry, I didn't see it."
+          }
+        ]
       }
     ]
   },
   {
-    "category": "Getting Around",
-    "description": "Directions and travel phrases to help you navigate streets and transport.",
-    "phrases": [
+    "category": "Articles",
+    "description": "Blend your helper words with short sentences to reinforce how you already use them.",
+    "rows": [
       {
-        "greek": "Πού είναι το ξενοδοχείο;",
-        "pronunciation": "Pou íne to xenodohío?",
-        "english": "Where is the hotel?"
+        "title": "Nai / oxi (yes/no)",
+        "summary": "Answer clearly with yes or no.",
+        "items": [
+          {
+            "greek": "Ναι",
+            "pronunciation": "Ne",
+            "english": "Yes"
+          },
+          {
+            "greek": "Όχι",
+            "pronunciation": "Óhi",
+            "english": "No"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Ναι, θέλω καφέ.",
+            "pronunciation": "Ne, thélo kafé.",
+            "english": "Yes, I want coffee."
+          },
+          {
+            "greek": "Όχι, ευχαριστώ.",
+            "pronunciation": "Óhi, efharistó.",
+            "english": "No, thank you."
+          },
+          {
+            "greek": "Ναι ή όχι;",
+            "pronunciation": "Ne í óhi?",
+            "english": "Yes or no?"
+          }
+        ]
       },
       {
-        "greek": "Πού είναι η στάση λεωφορείου;",
-        "pronunciation": "Pou íne i stási leoforíu?",
-        "english": "Where is the bus stop?"
+        "title": "Einai (is)",
+        "summary": "Point out what something or someone is.",
+        "items": [
+          {
+            "greek": "Είναι",
+            "pronunciation": "Íne",
+            "english": "Is / are"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Αυτή είναι η φίλη μου.",
+            "pronunciation": "Aftí íne i fíli mou.",
+            "english": "This is my friend."
+          },
+          {
+            "greek": "Το μουσείο είναι ανοιχτό;",
+            "pronunciation": "To mousío íne anikhtó?",
+            "english": "Is the museum open?"
+          },
+          {
+            "greek": "Η θάλασσα είναι όμορφη σήμερα.",
+            "pronunciation": "I thálassa íne ómorfi símera.",
+            "english": "The sea is beautiful today."
+          }
+        ]
       },
       {
-        "greek": "Θα ήθελα ένα ταξί, παρακαλώ.",
-        "pronunciation": "Tha íthela éna taxí, parakaló.",
-        "english": "I'd like a taxi, please."
+        "title": "Kanei (makes)",
+        "summary": "Talk about what something does or how much it costs.",
+        "items": [
+          {
+            "greek": "Κάνει",
+            "pronunciation": "Káni",
+            "english": "Does / makes"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Τι κάνει η Μαρία;",
+            "pronunciation": "Ti káni i María?",
+            "english": "What is Maria doing?"
+          },
+          {
+            "greek": "Η σούπα κάνει δέκα ευρώ.",
+            "pronunciation": "I soúpa káni déka evró.",
+            "english": "The soup costs ten euros."
+          },
+          {
+            "greek": "Κάνει ζέστη σήμερα.",
+            "pronunciation": "Káni zésti símera.",
+            "english": "It's hot today."
+          }
+        ]
       },
       {
-        "greek": "Μπορείτε να με πάτε στο αεροδρόμιο;",
-        "pronunciation": "Boríte na me páte sto aerodrómio?",
-        "english": "Can you take me to the airport?"
+        "title": "Sto (at)",
+        "summary": "Place people and things where they belong.",
+        "items": [
+          {
+            "greek": "Στο",
+            "pronunciation": "Sto",
+            "english": "At the / in the"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Είμαι στο ξενοδοχείο.",
+            "pronunciation": "Íme sto xenodohío.",
+            "english": "I am at the hotel."
+          },
+          {
+            "greek": "Θα σε δω στο μουσείο.",
+            "pronunciation": "Tha se do sto mousío.",
+            "english": "I'll see you at the museum."
+          },
+          {
+            "greek": "Το ποδήλατο είναι στο σπίτι.",
+            "pronunciation": "To podílato íne sto spíti.",
+            "english": "The bicycle is at home."
+          }
+        ]
       },
       {
-        "greek": "Πόση ώρα διαρκεί;",
-        "pronunciation": "Pósi óra diarkí?",
-        "english": "How long does it take?"
+        "title": "Tha íthela (I would like)",
+        "summary": "Politely ask for what you want.",
+        "items": [
+          {
+            "greek": "Θα ήθελα",
+            "pronunciation": "Tha íthela",
+            "english": "I would like"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Θα ήθελα έναν χυμό.",
+            "pronunciation": "Tha íthela énan chimó.",
+            "english": "I would like a juice."
+          },
+          {
+            "greek": "Θα ήθελα να πληρώσω τώρα.",
+            "pronunciation": "Tha íthela na pliróso tóra.",
+            "english": "I would like to pay now."
+          },
+          {
+            "greek": "Θα ήθελα πληροφορίες.",
+            "pronunciation": "Tha íthela pliroforíes.",
+            "english": "I would like some information."
+          }
+        ]
       },
       {
-        "greek": "Μπορείτε να το γράψετε;",
-        "pronunciation": "Boríte na to grápsete?",
-        "english": "Could you write it down?"
-      },
-      {
-        "greek": "Χάθηκα.",
-        "pronunciation": "Háthika.",
-        "english": "I'm lost."
-      },
-      {
-        "greek": "Μπορείτε να μου δείξετε στον χάρτη;",
-        "pronunciation": "Boríte na mou díxete ston hárti?",
-        "english": "Can you show me on the map?"
-      }
-    ]
-  },
-  {
-    "category": "Dining & Food",
-    "description": "Order confidently and share dietary needs while eating out.",
-    "phrases": [
-      {
-        "greek": "Ένα τραπέζι για δύο, παρακαλώ.",
-        "pronunciation": "Éna trapézi gia dýo, parakaló.",
-        "english": "A table for two, please."
-      },
-      {
-        "greek": "Θα ήθελα το μενού, παρακαλώ.",
-        "pronunciation": "Tha íthela to menoú, parakaló.",
-        "english": "I'd like the menu, please."
-      },
-      {
-        "greek": "Τι προτείνετε;",
-        "pronunciation": "Ti proteínete?",
-        "english": "What do you recommend?"
-      },
-      {
-        "greek": "Το λογαριασμό, παρακαλώ.",
-        "pronunciation": "To logariasmó, parakaló.",
-        "english": "The bill, please."
-      },
-      {
-        "greek": "Νερό, παρακαλώ.",
-        "pronunciation": "Neró, parakaló.",
-        "english": "Water, please."
-      },
-      {
-        "greek": "Είμαι χορτοφάγος.",
-        "pronunciation": "Íme hortofágos.",
-        "english": "I'm vegetarian."
-      },
-      {
-        "greek": "Έχω αλλεργία στα φιστίκια.",
-        "pronunciation": "Ého allergía sta fistíkia.",
-        "english": "I'm allergic to peanuts."
-      },
-      {
-        "greek": "Χωρίς πάγο, παρακαλώ.",
-        "pronunciation": "Horís págo, parakaló.",
-        "english": "No ice, please."
-      }
-    ]
-  },
-  {
-    "category": "Shopping & Money",
-    "description": "Useful questions for prices, payments, and finding the right item.",
-    "phrases": [
-      {
-        "greek": "Πόσο κάνει αυτό;",
-        "pronunciation": "Póso káni aftó?",
-        "english": "How much is this?"
-      },
-      {
-        "greek": "Μπορείτε να μου κάνετε μια καλύτερη τιμή;",
-        "pronunciation": "Boríte na mou kánete mia kalýteri timí?",
-        "english": "Can you give me a better price?"
-      },
-      {
-        "greek": "Δέχεστε κάρτα;",
-        "pronunciation": "Déheste kárta?",
-        "english": "Do you accept card?"
-      },
-      {
-        "greek": "Μπορώ να πληρώσω με μετρητά;",
-        "pronunciation": "Boró na pliróso me metritá?",
-        "english": "Can I pay with cash?"
-      },
-      {
-        "greek": "Θα το πάρω.",
-        "pronunciation": "Tha to páro.",
-        "english": "I'll take it."
-      },
-      {
-        "greek": "Ψάχνω για ένα σουβενίρ.",
-        "pronunciation": "Psáhno gia éna souvenir.",
-        "english": "I'm looking for a souvenir."
-      },
-      {
-        "greek": "Έχετε άλλο χρώμα;",
-        "pronunciation": "Éhete állo hróma?",
-        "english": "Do you have another color?"
-      },
-      {
-        "greek": "Μπορώ να το δοκιμάσω;",
-        "pronunciation": "Boró na to dokimáso?",
-        "english": "Can I try it on?"
-      }
-    ]
-  },
-  {
-    "category": "Emergencies & Health",
-    "description": "Stay safe with phrases for urgent situations and communication help.",
-    "phrases": [
-      {
-        "greek": "Βοήθεια!",
-        "pronunciation": "Voítheia!",
-        "english": "Help!"
-      },
-      {
-        "greek": "Καλέστε ασθενοφόρο!",
-        "pronunciation": "Kaléste asthenofóro!",
-        "english": "Call an ambulance!"
-      },
-      {
-        "greek": "Χρειάζομαι γιατρό.",
-        "pronunciation": "Hriazóme giatró.",
-        "english": "I need a doctor."
-      },
-      {
-        "greek": "Πού είναι το νοσοκομείο;",
-        "pronunciation": "Pou íne to nosokomío?",
-        "english": "Where is the hospital?"
-      },
-      {
-        "greek": "Έχασα το διαβατήριό μου.",
-        "pronunciation": "Éhasa to diavatírio mou.",
-        "english": "I lost my passport."
-      },
-      {
-        "greek": "Υπάρχει φαρμακείο κοντά;",
-        "pronunciation": "Ipárhi farmakeío kondá?",
-        "english": "Is there a pharmacy nearby?"
-      },
-      {
-        "greek": "Μπορείτε να μιλήσετε πιο αργά;",
-        "pronunciation": "Boríte na milísete pio argá?",
-        "english": "Can you speak more slowly?"
-      },
-      {
-        "greek": "Δεν μιλάω πολύ καλά ελληνικά.",
-        "pronunciation": "Den miláo polí kalá elliniká.",
-        "english": "I don't speak Greek very well."
+        "title": "O antras / i yunaika",
+        "summary": "Keep the words for man and woman fresh.",
+        "items": [
+          {
+            "greek": "Ο άντρας",
+            "pronunciation": "O ántras",
+            "english": "The man"
+          },
+          {
+            "greek": "Η γυναίκα",
+            "pronunciation": "I yinéka",
+            "english": "The woman"
+          }
+        ],
+        "examples": [
+          {
+            "greek": "Ο άντρας είναι δάσκαλος.",
+            "pronunciation": "O ántras íne dáskalos.",
+            "english": "The man is a teacher."
+          },
+          {
+            "greek": "Η γυναίκα είναι στο γραφείο.",
+            "pronunciation": "I yinéka íne sto grafío.",
+            "english": "The woman is at the office."
+          },
+          {
+            "greek": "Ο άντρας και η γυναίκα πίνουν καφέ.",
+            "pronunciation": "O ántras kai i yinéka pínoún kafé.",
+            "english": "The man and the woman are drinking coffee."
+          }
+        ]
       }
     ]
   }
