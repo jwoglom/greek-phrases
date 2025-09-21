@@ -48,7 +48,4 @@ This site is static and can be hosted on GitHub Pages:
 
 ## Pull request previews
 
-Every pull request receives an automated preview comment to make browser testing easier before merging:
-
-- If the repository already publishes GitHub Pages through GitHub Actions, the workflow uploads the static files to a Pages preview environment for that revision and links to the temporary site.
-- If the production site is still published directly from a branch or folder, the workflow avoids reconfiguring Pages so the live site stays untouched. Instead, it links to a read-only snapshot of the pull request commit served via [raw.githack.com](https://raw.githack.com/).
+Every pull request automatically receives a comment with a preview link rendered from the proposed commit. The link points to [`index.html`](index.html) served via [raw.githack.com](https://raw.githack.com/), providing a read-only snapshot without touching the production Pages configuration.
