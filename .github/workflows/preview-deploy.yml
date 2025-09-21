@@ -1,46 +1,16 @@
-name: Deploy Preview
+name: PR Preview
 
 on:
   pull_request_target:
     types: [opened, reopened, synchronize, ready_for_review]
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
   pull-requests: write
 
-concurrency:
-  group: pages-preview-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 jobs:
-  deploy-preview:
+  comment-preview:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - name: Checkout pull request
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@v4
-        with:
-          preview: true
-
       - name: Comment preview link
         uses: peter-evans/create-or-update-comment@v4
         with:
@@ -48,6 +18,6 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             🚀 Preview ready for commit `${{ github.event.pull_request.head.sha }}`
-
-            🔗 **Preview URL:** ${{ steps.deploy.outputs.page_url }}
+            🔗 **Preview URL:** https://rawcdn.githack.com/${{ github.event.pull_request.head.repo.full_name }}/${{ github.event.pull_request.head.sha }}/index.html
+            _Served via raw.githack.com_
           body-includes: 'Preview URL:'
