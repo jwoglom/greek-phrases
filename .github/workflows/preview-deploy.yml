@@ -15,7 +15,76 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  pages-info:
+    name: Detect Pages configuration
+    runs-on: ubuntu-latest
+    outputs:
+      is_workflow: ${{ steps.detect.outputs.is_workflow }}
+      fallback_url: ${{ steps.detect.outputs.fallback_url }}
+      reason: ${{ steps.detect.outputs.reason }}
+      source: ${{ steps.detect.outputs.source }}
+    steps:
+      - name: Inspect GitHub Pages settings
+        id: detect
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const outputs = {
+              isWorkflow: false,
+              fallbackUrl: '',
+              reason: '',
+              source: '',
+              buildType: ''
+            };
+
+            try {
+              const { data } = await github.rest.repos.getPages({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+
+              outputs.buildType = data?.build_type ?? '';
+              if (data?.source?.branch) {
+                outputs.source =
+                  data.source.path && data.source.path !== ''
+                    ? `${data.source.branch}/${data.source.path}`
+                    : data.source.branch;
+              }
+
+              if (outputs.buildType === 'workflow') {
+                outputs.isWorkflow = true;
+              } else {
+                const friendlySource = outputs.source
+                  ? `the "${outputs.source}" source`
+                  : 'its existing branch configuration';
+                outputs.reason = `GitHub Pages currently publishes from ${friendlySource}, so deploying a preview with GitHub Actions would overwrite the live site.`;
+              }
+            } catch (error) {
+              if (error.status === 404) {
+                outputs.reason = 'GitHub Pages is not enabled for this repository.';
+              } else {
+                core.warning(`Failed to query GitHub Pages configuration: ${error.message}`);
+                outputs.reason = `Failed to confirm the existing GitHub Pages configuration (${error.status ?? 'unknown status'}).`;
+              }
+            }
+
+            if (!outputs.isWorkflow && pr?.head?.repo?.full_name && pr?.head?.sha) {
+              outputs.fallbackUrl = `https://rawcdn.githack.com/${pr.head.repo.full_name}/${pr.head.sha}/index.html`;
+            }
+
+            core.info(`Pages build type: ${outputs.buildType || 'unknown'}`);
+            core.info(`Preview via Actions available: ${outputs.isWorkflow}`);
+
+            core.setOutput('is_workflow', outputs.isWorkflow ? 'true' : 'false');
+            core.setOutput('fallback_url', outputs.fallbackUrl);
+            core.setOutput('reason', outputs.reason || '');
+            core.setOutput('source', outputs.source || '');
+            core.setOutput('build_type', outputs.buildType || '');
+
   deploy-preview:
+    needs: pages-info
+    if: needs.pages-info.outputs.is_workflow == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -24,8 +93,9 @@ jobs:
       - name: Checkout pull request
         uses: actions/checkout@v4
         with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
           persist-credentials: false
-          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -51,3 +121,22 @@ jobs:
 
             🔗 **Preview URL:** ${{ steps.deploy.outputs.page_url }}
           body-includes: 'Preview URL:'
+
+  fallback-preview:
+    needs: pages-info
+    if: needs.pages-info.outputs.is_workflow != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment fallback preview link
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ⚠️ Preview not created for commit `${{ github.event.pull_request.head.sha }}`.
+
+            ${{ needs.pages-info.outputs.reason || 'GitHub Pages preview deployments require the repository to publish through GitHub Actions.' }}
+
+            ${{ needs.pages-info.outputs.fallback_url && format('🔗 **Direct preview:** {0}', needs.pages-info.outputs.fallback_url) || 'No automatic preview link is available for this commit.' }}
+            ${{ needs.pages-info.outputs.fallback_url && '_Served via raw.githack.com_' || '' }}
+          body-includes: 'Preview not created for commit'

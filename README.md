@@ -48,6 +48,7 @@ This site is static and can be hosted on GitHub Pages:
 
 ## Pull request previews
 
-Each pull request automatically gets a preview deployment. The CI workflow builds the static site, publishes it to a GitHub Pages
-preview environment for that revision, and leaves a comment on the PR with a link to the live preview. This makes it easy to review
-changes to the site in a browser before merging.
+Every pull request receives an automated preview comment to make browser testing easier before merging:
+
+- If the repository already publishes GitHub Pages through GitHub Actions, the workflow uploads the static files to a Pages preview environment for that revision and links to the temporary site.
+- If the production site is still published directly from a branch or folder, the workflow avoids reconfiguring Pages so the live site stays untouched. Instead, it links to a read-only snapshot of the pull request commit served via [raw.githack.com](https://raw.githack.com/).
