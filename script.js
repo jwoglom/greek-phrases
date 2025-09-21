@@ -1,10 +1,12 @@
-const groupsContainer = document.getElementById('phrase-groups');
+const groupsContainer = document.getElementById('practice-groups');
 const supportMessage = document.getElementById('support-message');
-const ttsSupported = 'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined';
+const ttsSupported =
+  'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined';
 let selectedVoice = null;
 
 if (!ttsSupported && supportMessage) {
-  supportMessage.textContent = 'Pronunciation playback is not available in this browser.';
+  supportMessage.textContent =
+    'Pronunciation playback is not available in this browser.';
 }
 
 function chooseVoice(preferredLang = 'el') {
@@ -12,16 +14,20 @@ function chooseVoice(preferredLang = 'el') {
     return null;
   }
   const voices = window.speechSynthesis.getVoices();
-  const byLang = voices.find(voice => voice.lang && voice.lang.toLowerCase().startsWith(preferredLang));
-  return byLang || voices.find(voice => voice.lang && voice.lang.toLowerCase().includes('el')) || null;
+  const byLang = voices.find(
+    voice => voice.lang && voice.lang.toLowerCase().startsWith(preferredLang)
+  );
+  return (
+    byLang || voices.find(voice => voice.lang && voice.lang.toLowerCase().includes('el')) || null
+  );
 }
 
 function speakPhrase(phrase, button) {
-  if (!ttsSupported) {
+  if (!ttsSupported || !phrase || !button) {
     return;
   }
   const utterance = new SpeechSynthesisUtterance(phrase.speech || phrase.greek);
-  utterance.lang = (phrase.lang || 'el-GR');
+  utterance.lang = phrase.lang || 'el-GR';
   if (!selectedVoice || !window.speechSynthesis.getVoices().includes(selectedVoice)) {
     selectedVoice = chooseVoice((phrase.lang || 'el').toLowerCase());
   }
@@ -37,173 +43,202 @@ function speakPhrase(phrase, button) {
   window.speechSynthesis.speak(utterance);
 }
 
-function normalizeGroups(data) {
+function normalizeSections(data) {
   if (!data) {
     return [];
   }
 
   if (Array.isArray(data)) {
-    const looksLikeGroups = data.every(
-      item => item && typeof item === 'object' && Array.isArray(item.phrases)
+    return data.filter(
+      section =>
+        section &&
+        typeof section === 'object' &&
+        Array.isArray(section.rows) &&
+        section.rows.some(row => row && typeof row === 'object')
     );
-
-    if (looksLikeGroups) {
-      return data;
-    }
-
-    const phrases = data.filter(item => item && typeof item === 'object');
-    if (!phrases.length) {
-      return [];
-    }
-
-    return [
-      {
-        category: 'Common phrases',
-        phrases
-      }
-    ];
   }
 
-  if (typeof data === 'object' && Array.isArray(data.phrases)) {
+  if (typeof data === 'object' && Array.isArray(data.rows)) {
     return [data];
   }
 
   return [];
 }
 
-function createPhraseListItem(phrase) {
-  const li = document.createElement('li');
+function createSpeechButton(phrase, { compact = false } = {}) {
+  if (!phrase || typeof phrase !== 'object' || !phrase.greek) {
+    return null;
+  }
+
   const button = document.createElement('button');
   button.type = 'button';
-  button.className = 'phrase-button';
+  button.className = 'speech-button';
+  if (compact) {
+    button.classList.add('speech-button--compact');
+  }
 
   const greek = document.createElement('span');
-  greek.className = 'phrase-text';
-  greek.lang = 'el';
+  greek.className = 'speech-button__text';
+  greek.lang = phrase.lang || 'el';
   greek.textContent = phrase.greek;
-
-  const pronunciation = document.createElement('span');
-  pronunciation.className = 'phrase-pronunciation';
-  if (phrase.pronunciation) {
-    pronunciation.textContent = phrase.pronunciation;
-  }
-
-  const english = document.createElement('span');
-  english.className = 'phrase-english';
-  english.textContent = phrase.english;
-
   button.append(greek);
+
   if (phrase.pronunciation) {
+    const pronunciation = document.createElement('span');
+    pronunciation.className = 'speech-button__pronunciation';
+    pronunciation.textContent = phrase.pronunciation;
     button.append(pronunciation);
   }
-  button.append(english);
+
+  if (phrase.english) {
+    const english = document.createElement('span');
+    english.className = 'speech-button__english';
+    english.textContent = phrase.english;
+    button.append(english);
+  }
 
   button.addEventListener('click', () => speakPhrase(phrase, button));
-  li.append(button);
-  return li;
+  return button;
 }
 
-function renderPhrases(data) {
+function createPracticeRow(row) {
+  if (!row || typeof row !== 'object') {
+    return null;
+  }
+
+  const variants = Array.isArray(row.variants)
+    ? row.variants.filter(variant => variant && typeof variant === 'object')
+    : [];
+  const examples = Array.isArray(row.examples)
+    ? row.examples.filter(example => example && typeof example === 'object')
+    : [];
+
+  if (!variants.length && !examples.length) {
+    return null;
+  }
+
+  const article = document.createElement('article');
+  article.className = 'practice-row';
+
+  const main = document.createElement('div');
+  main.className = 'practice-row-main';
+
+  const title = document.createElement('h3');
+  title.className = 'practice-row-title';
+  title.textContent =
+    row.title || (variants.length ? variants.map(item => item.greek).join(' / ') : 'Practice item');
+  main.append(title);
+
+  if (row.summary) {
+    const summary = document.createElement('p');
+    summary.className = 'practice-row-summary';
+    summary.textContent = row.summary;
+    main.append(summary);
+  }
+
+  if (variants.length) {
+    const variantsWrapper = document.createElement('div');
+    variantsWrapper.className = 'practice-row-variants';
+    variants.forEach(variant => {
+      const button = createSpeechButton(variant, { compact: true });
+      if (button) {
+        variantsWrapper.append(button);
+      }
+    });
+
+    if (variantsWrapper.children.length) {
+      if (row.variantsLabel !== false) {
+        const label = document.createElement('p');
+        label.className = 'practice-row-label';
+        label.textContent = row.variantsLabel || 'Core forms';
+        main.append(label);
+      }
+      main.append(variantsWrapper);
+    }
+  }
+
+  article.append(main);
+
+  if (examples.length) {
+    const list = document.createElement('ul');
+    list.className = 'example-list';
+    examples.forEach(example => {
+      const button = createSpeechButton(example);
+      if (button) {
+        const item = document.createElement('li');
+        item.append(button);
+        list.append(item);
+      }
+    });
+
+    if (list.children.length) {
+      const examplesWrapper = document.createElement('div');
+      examplesWrapper.className = 'practice-row-examples';
+
+      const heading = document.createElement('h4');
+      heading.className = 'practice-row-examples-heading';
+      heading.textContent = row.examplesHeading || 'Example phrases';
+      examplesWrapper.append(heading);
+      examplesWrapper.append(list);
+      article.append(examplesWrapper);
+    }
+  }
+
+  return article;
+}
+
+function renderPractice(data) {
   if (!groupsContainer) {
     return;
   }
 
   groupsContainer.textContent = '';
-  const groups = normalizeGroups(data).filter(
-    group => Array.isArray(group.phrases) && group.phrases.length
-  );
+  const sections = normalizeSections(data);
 
-  if (!groups.length) {
-    const emptyMessage = document.createElement('p');
-    emptyMessage.className = 'empty-state';
-    emptyMessage.textContent = 'No phrases are available right now.';
-    groupsContainer.append(emptyMessage);
-    return;
-  }
+  sections.forEach(sectionData => {
+    const rows = Array.isArray(sectionData.rows)
+      ? sectionData.rows
+          .map(createPracticeRow)
+          .filter(rowElement => rowElement instanceof HTMLElement)
+      : [];
 
-  const collapseOnMobile =
-    typeof window !== 'undefined' &&
-    typeof window.matchMedia === 'function' &&
-    window.matchMedia('(max-width: 640px)').matches;
+    if (!rows.length) {
+      return;
+    }
 
-  groups.forEach((group, groupIndex) => {
     const section = document.createElement('section');
-    section.className = 'phrase-group';
+    section.className = 'practice-section';
+
+    const header = document.createElement('header');
+    header.className = 'practice-section-header';
 
     const heading = document.createElement('h2');
-    heading.className = 'phrase-group-heading';
+    heading.className = 'practice-section-title';
+    heading.textContent = sectionData.category || 'Practice set';
+    header.append(heading);
 
-    const toggleButton = document.createElement('button');
-    toggleButton.type = 'button';
-    toggleButton.className = 'phrase-group-toggle';
-
-    const contentId = `phrase-group-content-${groupIndex}`;
-    toggleButton.setAttribute('aria-controls', contentId);
-
-    const title = document.createElement('span');
-    title.className = 'phrase-group-title';
-    title.textContent = group.category || `Phrase group ${groupIndex + 1}`;
-    toggleButton.append(title);
-
-    const icon = document.createElement('span');
-    icon.className = 'phrase-group-toggle-icon';
-    icon.setAttribute('aria-hidden', 'true');
-    icon.innerHTML =
-      '<svg viewBox="0 0 12 8" width="12" height="8" focusable="false" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    toggleButton.append(icon);
-
-    heading.append(toggleButton);
-    section.append(heading);
-
-    const content = document.createElement('div');
-    content.className = 'phrase-group-content';
-    content.id = contentId;
-
-    if (group.description) {
+    if (sectionData.description) {
       const description = document.createElement('p');
-      description.className = 'phrase-group-description';
-      description.textContent = group.description;
-      content.append(description);
+      description.className = 'practice-section-description';
+      description.textContent = sectionData.description;
+      header.append(description);
     }
 
-    const list = document.createElement('ul');
-    list.className = 'phrases';
-    group.phrases.forEach(phrase => {
-      if (phrase && typeof phrase === 'object' && phrase.greek && phrase.english) {
-        list.append(createPhraseListItem(phrase));
-      }
-    });
+    section.append(header);
 
-    if (list.children.length) {
-      content.append(list);
-      section.append(content);
-
-      const setCollapsedState = collapsed => {
-        section.classList.toggle('is-collapsed', collapsed);
-        toggleButton.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-        if (collapsed) {
-          content.hidden = true;
-          content.setAttribute('aria-hidden', 'true');
-          content.style.display = 'none';
-        } else {
-          content.hidden = false;
-          content.removeAttribute('hidden');
-          content.removeAttribute('aria-hidden');
-          content.style.display = '';
-        }
-      };
-
-      const startCollapsed = collapseOnMobile && groupIndex > 0;
-      setCollapsedState(startCollapsed);
-
-      toggleButton.addEventListener('click', () => {
-        const nextCollapsed = !section.classList.contains('is-collapsed');
-        setCollapsedState(nextCollapsed);
-      });
-
-      groupsContainer.append(section);
-    }
+    const rowsWrapper = document.createElement('div');
+    rowsWrapper.className = 'practice-rows';
+    rows.forEach(rowElement => rowsWrapper.append(rowElement));
+    section.append(rowsWrapper);
+    groupsContainer.append(section);
   });
+
+  if (!groupsContainer.children.length) {
+    const emptyMessage = document.createElement('p');
+    emptyMessage.className = 'empty-state';
+    emptyMessage.textContent = 'No practice items are available right now.';
+    groupsContainer.append(emptyMessage);
+  }
 }
 
 fetch('phrases.json')
@@ -213,11 +248,12 @@ fetch('phrases.json')
     }
     return response.json();
   })
-  .then(renderPhrases)
+  .then(renderPractice)
   .catch(error => {
-    console.error('Failed to load phrases', error);
+    console.error('Failed to load practice data', error);
     if (supportMessage) {
-      supportMessage.textContent = 'Unable to load the phrases list. Please try again later.';
+      supportMessage.textContent =
+        'Unable to load the practice list. Please try again later.';
     }
   });
 
