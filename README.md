@@ -45,3 +45,9 @@ This site is static and can be hosted on GitHub Pages:
 1. Push the repository to GitHub.
 2. In the repository settings, enable GitHub Pages and select the `main` branch (or the branch that should be published).
 3. Wait for the deployment to finish and access the published URL provided by GitHub.
+
+## Pull request previews
+
+Each pull request automatically gets a preview deployment. The CI workflow builds the static site, publishes it to a GitHub Pages
+preview environment for that revision, and leaves a comment on the PR with a link to the live preview. This makes it easy to review
+changes to the site in a browser before merging.
