@@ -4,7 +4,9 @@ A static, mobile-friendly website listing common Greek phrases helpful for trave
 
 ## Features
 
-- Responsive layout that works well on phones and tablets
+- Responsive layout that keeps the phrase cards easy to read on phones and tablets
+- Quick search bar to filter phrases across every category as you type
+- Collapsible practice sections so you can focus on a single topic at a time
 - Phrases are configured in [`phrases.json`](phrases.json) and loaded dynamically
 - Pronunciation playback uses the Web Speech API, so no audio files are required
 - Optional transliteration field to help with practicing pronunciation
