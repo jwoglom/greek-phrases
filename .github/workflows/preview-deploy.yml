@@ -17,6 +17,9 @@ concurrency:
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Checkout pull request
         uses: actions/checkout@v4
