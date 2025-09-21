@@ -2,15 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Greek Vocabulary Practice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greek Phrase Coach</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <h1>Targeted Greek Vocabulary Practice</h1>
-    <p class="description">Review the words you already know, hear their pronunciation, and see them in action inside short example phrases.</p>
-    <p id="support-message" class="support-message" aria-live="polite"></p>
+  <main class="page">
+    <header class="page-hero" role="banner">
+      <div class="page-hero__content">
+        <p class="page-hero__eyebrow">Confidence builder</p>
+        <h1 class="page-hero__title">Greek Phrase Coach</h1>
+        <p class="page-hero__description">
+          Practice the phrases you already know, listen to the pronunciation, and see them used inside short, practical sentences.
+        </p>
+      </div>
+    </header>
+
+    <section class="page-controls" aria-label="Practice controls">
+      <div class="page-controls__search">
+        <label class="field-label" for="phrase-search">Search phrases</label>
+        <div class="search-field">
+          <span class="search-field__icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" focusable="false" role="presentation">
+              <path
+                d="M12.9 14.32a7 7 0 1 1 1.41-1.41l3.4 3.39a1 1 0 0 1-1.42 1.42zM8 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"
+              />
+            </svg>
+          </span>
+          <input
+            id="phrase-search"
+            class="search-field__input"
+            type="search"
+            name="phrase-search"
+            placeholder="Search Greek or English words"
+            autocomplete="off"
+            enterkeyhint="search"
+            spellcheck="false"
+          />
+          <button type="button" id="clear-search" class="search-field__clear" aria-label="Clear search">
+            <span aria-hidden="true" class="search-field__clear-icon">&times;</span>
+            <span class="search-field__clear-text">Clear</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="status-messages">
+        <p id="results-message" class="status-message" aria-live="polite"></p>
+        <p id="support-message" class="status-message support-message" aria-live="polite"></p>
+      </div>
+    </section>
+
     <div id="practice-groups" class="practice-groups" aria-live="polite"></div>
   </main>
   <script src="script.js"></script>
