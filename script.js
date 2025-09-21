@@ -178,20 +178,27 @@ function renderPhrases(data) {
       content.append(list);
       section.append(content);
 
+      const setCollapsedState = collapsed => {
+        section.classList.toggle('is-collapsed', collapsed);
+        toggleButton.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        if (collapsed) {
+          content.hidden = true;
+          content.setAttribute('aria-hidden', 'true');
+          content.style.display = 'none';
+        } else {
+          content.hidden = false;
+          content.removeAttribute('hidden');
+          content.removeAttribute('aria-hidden');
+          content.style.display = '';
+        }
+      };
+
       const startCollapsed = collapseOnMobile && groupIndex > 0;
-      if (startCollapsed) {
-        section.classList.add('is-collapsed');
-        toggleButton.setAttribute('aria-expanded', 'false');
-        content.hidden = true;
-      } else {
-        toggleButton.setAttribute('aria-expanded', 'true');
-        content.hidden = false;
-      }
+      setCollapsedState(startCollapsed);
 
       toggleButton.addEventListener('click', () => {
-        const collapsed = section.classList.toggle('is-collapsed');
-        toggleButton.setAttribute('aria-expanded', String(!collapsed));
-        content.hidden = collapsed;
+        const nextCollapsed = !section.classList.contains('is-collapsed');
+        setCollapsedState(nextCollapsed);
       });
 
       groupsContainer.append(section);
