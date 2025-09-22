@@ -325,7 +325,7 @@ button {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  align-items: stretch;
+  align-items: start;
   gap: clamp(0.7rem, 1.4vw, 1.05rem);
 }
 
@@ -337,7 +337,6 @@ button {
   display: grid;
   gap: clamp(0.5rem, 1.1vw, 0.7rem);
   box-shadow: var(--shadow-small);
-  height: 100%;
 }
 
 .practice-card__meta {
