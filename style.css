@@ -41,8 +41,14 @@ main.page {
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     'hero'
-    'controls'
     'practice';
+}
+
+.practice-area {
+  grid-area: practice;
+  display: grid;
+  gap: clamp(0.7rem, 1.6vw, 1.1rem);
+  align-content: start;
 }
 
 h1,
@@ -70,12 +76,30 @@ button {
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-large);
   overflow: hidden;
+  display: grid;
+  gap: clamp(0.85rem, 1.8vw, 1.3rem);
 }
 
 .page-hero__content {
   display: grid;
   gap: clamp(0.35rem, 0.9vw, 0.7rem);
   max-width: 48rem;
+}
+
+.page-hero__search {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+  padding: clamp(0.6rem, 1vw, 0.85rem) clamp(0.7rem, 1.4vw, 1rem);
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: clamp(0.85rem, 1.8vw, 1.2rem);
+  border: 1px solid var(--color-border-strong);
+  box-shadow: var(--shadow-small);
+  width: min(100%, 420px);
+}
+
+.page-hero__search .field-label {
+  color: var(--color-muted-strong);
 }
 
 .page-hero__eyebrow {
@@ -97,22 +121,6 @@ button {
   max-width: 44rem;
   color: var(--color-muted);
   font-size: clamp(0.95rem, 1vw + 0.85rem, 1.18rem);
-}
-
-.page-controls {
-  grid-area: controls;
-  background: var(--color-surface);
-  border-radius: clamp(0.85rem, 2.2vw, 1.3rem);
-  padding: clamp(0.75rem, 1.6vw, 1.2rem);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-medium);
-  display: grid;
-  gap: clamp(0.6rem, 1.4vw, 0.95rem);
-}
-
-.page-controls__search {
-  display: grid;
-  gap: 0.4rem;
 }
 
 .field-label {
@@ -210,15 +218,22 @@ button {
 }
 
 .status-messages {
-  display: grid;
-  gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .status-message {
   margin: 0;
-  min-height: 1.1rem;
   font-size: clamp(0.84rem, 0.85vw, 0.95rem);
   color: var(--color-muted);
+}
+
+.status-message:empty {
+  display: none;
 }
 
 .support-message {
@@ -226,7 +241,6 @@ button {
 }
 
 .practice-groups {
-  grid-area: practice;
   display: grid;
   gap: clamp(0.85rem, 1.8vw, 1.25rem);
 }
@@ -346,6 +360,48 @@ button {
 .practice-card__group {
   display: grid;
   gap: 0.35rem;
+}
+
+.practice-card__examples-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.practice-card__examples-toggle:hover {
+  color: var(--color-muted-strong);
+}
+
+.practice-card__examples-toggle:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 3px;
+}
+
+.practice-card__examples-text {
+  flex: 1;
+}
+
+.practice-card__examples-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-accent);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.practice-card__examples-toggle:hover .practice-card__examples-icon {
+  color: var(--color-accent-strong);
+}
+
+.practice-card__examples-toggle[aria-expanded='false'] .practice-card__examples-icon {
+  transform: rotate(-90deg);
 }
 
 .practice-card__label {
@@ -481,20 +537,17 @@ button {
   .page-hero {
     border-radius: 0.75rem;
     padding: 0.75rem 0.7rem;
+    gap: 0.7rem;
   }
 
   .page-hero__content {
     gap: 0.32rem;
   }
 
-  .page-controls {
+  .page-hero__search {
+    padding: 0.55rem 0.6rem;
     border-radius: 0.7rem;
-    padding: 0.65rem 0.7rem;
-    gap: 0.55rem;
-  }
-
-  .page-controls__search {
-    gap: 0.4rem;
+    width: 100%;
   }
 
   .search-field {
@@ -563,16 +616,25 @@ button {
 }
 
 @media (min-width: 720px) {
-  .page-controls {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-    align-items: end;
+  .page-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.9fr);
+    align-items: start;
+  }
+
+  .page-hero__search {
+    justify-self: end;
+    align-self: start;
   }
 
   .status-messages {
-    justify-items: end;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: clamp(0.35rem, 1vw, 0.6rem);
   }
 
-  .status-message {
+  .support-message:not(:empty) {
+    margin-left: auto;
     text-align: right;
   }
 }
@@ -601,7 +663,7 @@ button {
     grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
     grid-template-areas:
       'hero hero'
-      'controls practice';
+      'practice practice';
     align-items: start;
     gap: 1rem;
   }
@@ -610,11 +672,7 @@ button {
     grid-column: 1 / -1;
   }
 
-  .page-controls {
-    align-self: start;
-  }
-
-  .practice-groups {
+  .practice-area {
     align-self: stretch;
   }
 }
@@ -659,9 +717,9 @@ button {
     color: rgba(148, 163, 184, 0.9);
   }
 
-  .page-controls {
-    background: var(--color-surface);
-    border-color: rgba(148, 163, 184, 0.22);
+  .page-hero__search {
+    background: rgba(30, 41, 59, 0.92);
+    border-color: rgba(148, 163, 184, 0.28);
   }
 
   .search-field {

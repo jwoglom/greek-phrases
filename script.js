@@ -301,11 +301,13 @@ function createSpeechButton(phrase, { compact = false } = {}) {
   return button;
 }
 
-function createChevronIcon() {
+function createChevronIcon(className = 'practice-section__icon') {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 16 16');
   svg.setAttribute('aria-hidden', 'true');
-  svg.classList.add('practice-section__icon');
+  if (className) {
+    svg.classList.add(className);
+  }
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   path.setAttribute(
     'd',
@@ -385,13 +387,26 @@ function createPracticeRow(row) {
     const examplesGroup = document.createElement('div');
     examplesGroup.className = 'practice-card__group practice-card__examples';
 
-    const heading = document.createElement('h4');
-    heading.className = 'practice-card__heading';
-    heading.textContent = row.examplesHeading || 'Example phrases';
-    examplesGroup.append(heading);
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'practice-card__examples-toggle practice-card__label';
+    toggle.setAttribute('aria-expanded', 'false');
+
+    const toggleText = document.createElement('span');
+    toggleText.className = 'practice-card__examples-text';
+    toggleText.textContent = row.examplesHeading || 'Example phrases';
+    toggle.append(toggleText);
+
+    const toggleIcon = createChevronIcon('practice-card__examples-icon');
+    toggle.append(toggleIcon);
 
     const list = document.createElement('ul');
     list.className = 'practice-card__example-list';
+    const listId = `${row.__id || 'row'}-examples`;
+    list.id = listId;
+    list.hidden = true;
+    list.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-controls', listId);
 
     examples.forEach(example => {
       const button = createSpeechButton(example);
@@ -403,8 +418,17 @@ function createPracticeRow(row) {
     });
 
     if (list.children.length) {
+      examplesGroup.append(toggle);
       examplesGroup.append(list);
       sectionsWrapper.append(examplesGroup);
+
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        const next = !expanded;
+        toggle.setAttribute('aria-expanded', String(next));
+        list.hidden = !next;
+        list.setAttribute('aria-hidden', String(!next));
+      });
     }
   }
 
