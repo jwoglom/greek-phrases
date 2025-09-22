@@ -468,6 +468,7 @@ function createPracticeSection(sectionData, { forceExpand = false } = {}) {
   panel.setAttribute('role', 'region');
   panel.setAttribute('aria-labelledby', toggleId);
   panel.hidden = !shouldExpand;
+  panel.setAttribute('aria-hidden', shouldExpand ? 'false' : 'true');
 
   const list = document.createElement('ul');
   list.className = 'practice-list';
@@ -490,6 +491,7 @@ function createPracticeSection(sectionData, { forceExpand = false } = {}) {
     const next = !expanded;
     toggle.setAttribute('aria-expanded', String(next));
     panel.hidden = !next;
+    panel.setAttribute('aria-hidden', String(!next));
     sectionState.set(sectionData.__id, { expanded: next });
   });
 

@@ -29,16 +29,20 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: clamp(1.5rem, 4vw, 3.2rem) clamp(1rem, 4vw, 2.75rem);
+  padding: clamp(0.65rem, 1.8vw, 1.4rem) clamp(0.55rem, 1.6vw, 1.2rem);
   background-color: var(--color-background);
   color: var(--color-text);
 }
 
 main.page {
-  width: min(960px, 100%);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.5rem, 3vw, 2.75rem);
+  width: min(1280px, 100%);
+  display: grid;
+  gap: clamp(0.85rem, 1.8vw, 1.35rem);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'hero'
+    'controls'
+    'practice';
 }
 
 h1,
@@ -59,9 +63,10 @@ button {
 }
 
 .page-hero {
+  grid-area: hero;
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(56, 189, 248, 0.16));
-  border-radius: clamp(1.6rem, 4vw, 2.5rem);
-  padding: clamp(1.8rem, 3.6vw, 3rem);
+  border-radius: clamp(0.95rem, 2.4vw, 1.6rem);
+  padding: clamp(0.95rem, 2vw, 1.6rem);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-large);
   overflow: hidden;
@@ -69,7 +74,7 @@ button {
 
 .page-hero__content {
   display: grid;
-  gap: clamp(0.6rem, 1.5vw, 1.2rem);
+  gap: clamp(0.35rem, 0.9vw, 0.7rem);
   max-width: 48rem;
 }
 
@@ -91,22 +96,23 @@ button {
   margin: 0;
   max-width: 44rem;
   color: var(--color-muted);
-  font-size: clamp(1rem, 1.2vw + 0.9rem, 1.25rem);
+  font-size: clamp(0.95rem, 1vw + 0.85rem, 1.18rem);
 }
 
 .page-controls {
+  grid-area: controls;
   background: var(--color-surface);
-  border-radius: clamp(1.4rem, 3vw, 2.2rem);
-  padding: clamp(1.3rem, 2.6vw, 1.8rem);
+  border-radius: clamp(0.85rem, 2.2vw, 1.3rem);
+  padding: clamp(0.75rem, 1.6vw, 1.2rem);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-medium);
   display: grid;
-  gap: clamp(1rem, 2.2vw, 1.5rem);
+  gap: clamp(0.6rem, 1.4vw, 0.95rem);
 }
 
 .page-controls__search {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.4rem;
 }
 
 .field-label {
@@ -121,14 +127,14 @@ button {
 .search-field {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 0.7rem;
+  gap: 0.45rem;
   align-items: center;
-  border-radius: 16px;
+  border-radius: 14px;
   background: var(--color-surface-strong);
   border: 1px solid var(--color-border-strong);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  padding: 0 clamp(0.75rem, 1.5vw, 1rem);
-  min-height: 3.25rem;
+  padding: 0 clamp(0.5rem, 1vw, 0.75rem);
+  min-height: 2.45rem;
 }
 
 .search-field__icon {
@@ -165,13 +171,13 @@ button {
 .search-field__clear {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
   border: none;
   background: rgba(37, 99, 235, 0.12);
   color: var(--color-accent);
   font-weight: 600;
-  border-radius: 12px;
-  padding: 0.45rem 0.75rem;
+  border-radius: 10px;
+  padding: 0.28rem 0.5rem;
   cursor: pointer;
   transition: background-color 0.14s ease, transform 0.14s ease;
 }
@@ -205,13 +211,13 @@ button {
 
 .status-messages {
   display: grid;
-  gap: 0.4rem;
+  gap: 0.25rem;
 }
 
 .status-message {
   margin: 0;
-  min-height: 1.3rem;
-  font-size: clamp(0.88rem, 0.9vw, 1rem);
+  min-height: 1.1rem;
+  font-size: clamp(0.84rem, 0.85vw, 0.95rem);
   color: var(--color-muted);
 }
 
@@ -220,29 +226,32 @@ button {
 }
 
 .practice-groups {
+  grid-area: practice;
   display: grid;
-  gap: clamp(1.6rem, 3vw, 2.5rem);
+  gap: clamp(0.85rem, 1.8vw, 1.25rem);
 }
 
 .practice-section {
   background: var(--color-surface);
-  border-radius: clamp(1.2rem, 2.8vw, 2rem);
+  border-radius: clamp(0.85rem, 2vw, 1.3rem);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-medium);
-  padding: clamp(1.3rem, 2.8vw, 2rem);
+  padding: clamp(0.8rem, 1.6vw, 1.15rem);
   display: grid;
-  gap: clamp(1.1rem, 2.4vw, 1.6rem);
+  gap: clamp(0.7rem, 1.4vw, 1rem);
 }
 
+
 .practice-section__header {
-  display: contents;
+  margin: 0;
 }
 
 .practice-section__toggle {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: clamp(0.75rem, 2vw, 1.4rem);
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: clamp(0.5rem, 1.2vw, 0.8rem);
   border: none;
   background: none;
   text-align: left;
@@ -256,19 +265,21 @@ button {
 }
 
 .practice-section__text {
-  display: grid;
-  gap: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.28rem;
 }
 
 .practice-section__title {
   margin: 0;
-  font-size: clamp(1.4rem, 1.8vw + 1.1rem, 2rem);
+  font-size: clamp(1.25rem, 1.4vw + 1rem, 1.8rem);
 }
 
 .practice-section__description {
   margin: 0;
   color: var(--color-muted);
-  font-size: clamp(0.95rem, 0.9vw, 1.05rem);
+  font-size: clamp(0.88rem, 0.8vw, 0.98rem);
 }
 
 .practice-section__icon {
@@ -276,6 +287,9 @@ button {
   height: 1.15rem;
   color: var(--color-accent);
   transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  margin-left: auto;
 }
 
 .practice-section__toggle[aria-expanded='false'] .practice-section__icon {
@@ -284,7 +298,7 @@ button {
 
 .practice-section__panel {
   display: grid;
-  gap: clamp(1.1rem, 2.4vw, 1.6rem);
+  gap: clamp(0.75rem, 1.5vw, 1.05rem);
 }
 
 .practice-list {
@@ -292,96 +306,112 @@ button {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: clamp(1rem, 2.2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: stretch;
+  gap: clamp(0.7rem, 1.4vw, 1.05rem);
 }
 
 .practice-card {
   background: var(--color-surface-strong);
-  border-radius: clamp(1rem, 2.6vw, 1.6rem);
+  border-radius: clamp(0.75rem, 1.8vw, 1.2rem);
   border: 1px solid var(--color-border-strong);
-  padding: clamp(1.15rem, 2.2vw, 1.8rem);
+  padding: clamp(0.6rem, 1.4vw, 0.9rem);
   display: grid;
-  gap: clamp(0.85rem, 2vw, 1.2rem);
+  gap: clamp(0.5rem, 1.1vw, 0.7rem);
   box-shadow: var(--shadow-small);
+  height: 100%;
 }
 
 .practice-card__meta {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.28rem;
 }
 
 .practice-card__title {
   margin: 0;
-  font-size: clamp(1.3rem, 1.7vw + 1rem, 1.85rem);
+  font-size: clamp(1.2rem, 1.6vw + 0.9rem, 1.7rem);
 }
 
 .practice-card__summary {
   margin: 0;
   color: var(--color-muted);
+  font-size: clamp(0.88rem, 0.9vw, 0.98rem);
 }
 
 .practice-card__sections {
   display: grid;
-  gap: clamp(0.9rem, 2vw, 1.3rem);
+  gap: clamp(0.45rem, 1vw, 0.7rem);
 }
 
 .practice-card__group {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.35rem;
 }
 
 .practice-card__label {
   margin: 0;
-  font-size: clamp(0.78rem, 0.9vw, 0.9rem);
+  font-size: clamp(0.72rem, 0.85vw, 0.85rem);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--color-muted);
 }
 
 .practice-card__heading {
   margin: 0;
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-size: clamp(0.92rem, 1.2vw, 1.1rem);
   font-weight: 650;
   color: var(--color-muted-strong);
 }
 
 .practice-card__variants {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: clamp(0.6rem, 1.6vw, 1rem);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: clamp(0.4rem, 1vw, 0.65rem);
 }
 
 .practice-card__examples {
   display: grid;
-  gap: clamp(0.6rem, 1.6vw, 1rem);
+  gap: clamp(0.4rem, 1vw, 0.65rem);
 }
 
 .practice-card__example-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: clamp(0.6rem, 1.6vw, 1rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.35rem, 0.9vw, 0.55rem);
+}
+
+.practice-card__example-list li {
+  display: flex;
+  flex: 1 1 120px;
+  min-width: 120px;
+}
+
+.practice-card__example-list li .speech-button {
+  flex: 1;
 }
 
 .speech-button {
   width: 100%;
   border: 1px solid var(--color-border-strong);
-  border-radius: 16px;
-  padding: clamp(0.85rem, 2.2vw, 1.1rem) clamp(1rem, 2.5vw, 1.35rem);
+  border-radius: 12px;
+  padding: clamp(0.4rem, 1.2vw, 0.65rem) clamp(0.55rem, 1.4vw, 0.85rem);
   background: var(--color-surface-strong);
   box-shadow: var(--shadow-small);
   text-align: left;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 0.35rem;
+  align-content: start;
+  gap: 0.18rem;
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .speech-button--compact {
-  padding: clamp(0.7rem, 1.8vw, 0.95rem) clamp(0.85rem, 2.2vw, 1.1rem);
+  padding: clamp(0.35rem, 1vw, 0.55rem) clamp(0.5rem, 1.2vw, 0.75rem);
 }
 
 .speech-button:hover {
@@ -415,28 +445,115 @@ button {
 }
 
 .speech-button__text {
-  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   font-weight: 650;
 }
 
 .speech-button__pronunciation {
-  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
   color: var(--color-muted);
 }
 
 .speech-button__english {
-  font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
   color: var(--color-muted);
 }
 
 .empty-state {
   margin: 0;
-  padding: clamp(1.4rem, 2.6vw, 1.8rem);
+  padding: clamp(1rem, 2vw, 1.4rem);
   text-align: center;
   color: var(--color-muted);
   border: 1px dashed var(--color-border);
-  border-radius: clamp(1.1rem, 2.6vw, 1.5rem);
+  border-radius: clamp(0.85rem, 2vw, 1.2rem);
   background: var(--color-surface);
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.55rem 0.5rem;
+  }
+
+  main.page {
+    gap: 0.7rem;
+  }
+
+  .page-hero {
+    border-radius: 0.75rem;
+    padding: 0.75rem 0.7rem;
+  }
+
+  .page-hero__content {
+    gap: 0.32rem;
+  }
+
+  .page-controls {
+    border-radius: 0.7rem;
+    padding: 0.65rem 0.7rem;
+    gap: 0.55rem;
+  }
+
+  .page-controls__search {
+    gap: 0.4rem;
+  }
+
+  .search-field {
+    border-radius: 10px;
+    padding: 0 0.45rem;
+    min-height: 2.3rem;
+  }
+
+  .search-field__clear {
+    padding: 0.24rem 0.4rem;
+  }
+
+  .practice-groups {
+    gap: 0.7rem;
+  }
+
+  .practice-section {
+    border-radius: 0.7rem;
+    padding: 0.7rem 0.7rem;
+    gap: 0.6rem;
+  }
+
+  .practice-section__toggle {
+    gap: 0.45rem;
+  }
+
+  .practice-card {
+    border-radius: 0.6rem;
+    padding: 0.5rem 0.55rem;
+    gap: 0.45rem;
+  }
+
+  .practice-card__sections {
+    gap: 0.45rem;
+  }
+
+  .practice-card__group {
+    gap: 0.3rem;
+  }
+
+  .practice-card__variants,
+  .practice-card__examples,
+  .practice-card__example-list {
+    gap: 0.35rem;
+  }
+
+  .practice-card__example-list li {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  .speech-button {
+    padding: 0.38rem 0.55rem;
+    gap: 0.16rem;
+  }
+
+  .speech-button--compact {
+    padding: 0.3rem 0.45rem;
+  }
 }
 
 @media (min-width: 520px) {
@@ -457,6 +574,55 @@ button {
 
   .status-message {
     text-align: right;
+  }
+}
+
+@media (max-width: 1100px) {
+  body {
+    padding-inline: clamp(0.45rem, 1.1vw, 0.95rem);
+  }
+
+  .practice-card__variants {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  }
+
+  .practice-card__example-list {
+    gap: clamp(0.35rem, 0.8vw, 0.55rem);
+  }
+
+  .practice-card__example-list li {
+    flex: 1 1 120px;
+    min-width: 100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  main.page {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    grid-template-areas:
+      'hero hero'
+      'controls practice';
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .page-hero {
+    grid-column: 1 / -1;
+  }
+
+  .page-controls {
+    align-self: start;
+  }
+
+  .practice-groups {
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 1160px) {
+  .practice-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
   }
 }
 
