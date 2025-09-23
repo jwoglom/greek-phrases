@@ -301,6 +301,68 @@ function createSpeechButton(phrase, { compact = false } = {}) {
   return button;
 }
 
+function createAlphabetCard(row) {
+  if (!row || typeof row !== 'object') {
+    return null;
+  }
+
+  const variants = Array.isArray(row.variants) ? row.variants : [];
+  if (!variants.length) {
+    return null;
+  }
+
+  const [primaryVariant] = variants;
+  const button = createSpeechButton(
+    {
+      ...primaryVariant,
+      greek:
+        (typeof row.title === 'string' && row.title.trim()) ||
+        primaryVariant.greek ||
+        '',
+    },
+    { compact: true }
+  );
+
+  if (!button) {
+    return null;
+  }
+
+  button.classList.add('alphabet-card__button');
+
+  const labelParts = [
+    typeof row.title === 'string' ? row.title.trim() : '',
+    typeof primaryVariant.pronunciation === 'string'
+      ? primaryVariant.pronunciation.trim()
+      : '',
+    typeof primaryVariant.english === 'string' ? primaryVariant.english.trim() : '',
+  ].filter(Boolean);
+
+  if (labelParts.length) {
+    button.setAttribute('aria-label', labelParts.join(' — '));
+  }
+
+  const greekText = button.querySelector('.speech-button__text');
+  if (greekText) {
+    greekText.classList.add('alphabet-card__greek');
+  }
+
+  const pronunciation = button.querySelector('.speech-button__pronunciation');
+  if (pronunciation) {
+    pronunciation.classList.add('alphabet-card__name');
+  }
+
+  const english = button.querySelector('.speech-button__english');
+  if (english) {
+    english.classList.add('alphabet-card__pronunciation');
+  }
+
+  const item = document.createElement('li');
+  item.className = 'alphabet-card';
+  item.append(button);
+
+  return item;
+}
+
 function createChevronIcon(className = 'practice-section__icon') {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 16 16');
@@ -447,6 +509,14 @@ function createPracticeSection(sectionData, { forceExpand = false } = {}) {
   const section = document.createElement('section');
   section.className = 'practice-section';
 
+  const layout =
+    typeof sectionData.layout === 'string' ? sectionData.layout.trim().toLowerCase() : '';
+  const isAlphabet = layout === 'alphabet';
+
+  if (isAlphabet) {
+    section.classList.add('practice-section--alphabet');
+  }
+
   const header = document.createElement('header');
   header.className = 'practice-section__header';
 
@@ -495,9 +565,12 @@ function createPracticeSection(sectionData, { forceExpand = false } = {}) {
   panel.setAttribute('aria-hidden', shouldExpand ? 'false' : 'true');
 
   const list = document.createElement('ul');
-  list.className = 'practice-list';
+  list.className = isAlphabet ? 'alphabet-grid' : 'practice-list';
+
+  const createRowElement = isAlphabet ? createAlphabetCard : createPracticeRow;
+
   sectionData.rows.forEach(row => {
-    const rowElement = createPracticeRow(row);
+    const rowElement = createRowElement(row);
     if (rowElement) {
       list.append(rowElement);
     }

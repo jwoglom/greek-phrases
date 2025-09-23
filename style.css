@@ -331,6 +331,50 @@ button {
   gap: 0;
 }
 
+.practice-section--alphabet {
+  gap: clamp(0.6rem, 1.2vw, 0.9rem);
+}
+
+.alphabet-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.4rem, 1vw, 0.65rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+}
+
+.alphabet-card {
+  margin: 0;
+  display: flex;
+}
+
+.alphabet-card__button {
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+  gap: 0.22rem;
+  padding: clamp(0.35rem, 0.95vw, 0.55rem) clamp(0.45rem, 1vw, 0.65rem);
+  height: 100%;
+}
+
+.alphabet-card__greek {
+  font-size: clamp(1.2rem, 2vw + 0.8rem, 2.1rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.alphabet-card__name {
+  font-size: clamp(0.82rem, 0.9vw, 0.95rem);
+  color: var(--color-muted-strong);
+}
+
+.alphabet-card__pronunciation {
+  font-size: clamp(0.72rem, 0.8vw, 0.85rem);
+  color: var(--color-muted);
+}
+
 .practice-card {
   background: var(--color-surface-strong);
   border-radius: clamp(0.75rem, 1.8vw, 1.2rem);
@@ -618,6 +662,12 @@ button {
   }
 }
 
+@media (min-width: 480px) {
+  .alphabet-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 520px) {
   .search-field__clear-text {
     display: inline;
@@ -628,6 +678,10 @@ button {
   .page-hero {
     grid-template-columns: minmax(0, 1fr) minmax(260px, 0.9fr);
     align-items: start;
+  }
+
+  .alphabet-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 
   .page-hero__search {
@@ -675,6 +729,10 @@ button {
       'practice practice';
     align-items: start;
     gap: 1rem;
+  }
+
+  .alphabet-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 
   .page-hero {
