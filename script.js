@@ -105,6 +105,11 @@ function normalizeSections(data) {
         return null;
       }
 
+      const layout =
+        typeof section.layout === 'string'
+          ? section.layout.trim().toLowerCase()
+          : '';
+
       const rows = Array.isArray(section.rows)
         ? section.rows
             .map((row, rowIndex) => {
@@ -151,6 +156,7 @@ function normalizeSections(data) {
             : 'Practice set',
         description:
           typeof section.description === 'string' ? section.description : '',
+        layout,
         rows,
         __id: `section-${sectionIndex}`,
       };
@@ -439,7 +445,112 @@ function createPracticeRow(row) {
   return item;
 }
 
+function createAlphabetSection(sectionData, { forceExpand = false } = {}) {
+  if (
+    !sectionData ||
+    !Array.isArray(sectionData.rows) ||
+    !sectionData.rows.length
+  ) {
+    return null;
+  }
+
+  const letters = sectionData.rows
+    .flatMap(row => (Array.isArray(row.variants) ? row.variants : []))
+    .filter(Boolean);
+
+  if (!letters.length) {
+    return null;
+  }
+
+  const section = document.createElement('section');
+  section.className = 'practice-section practice-section--alphabet';
+
+  const header = document.createElement('header');
+  header.className = 'practice-section__header';
+
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'practice-section__toggle';
+
+  const textWrapper = document.createElement('span');
+  textWrapper.className = 'practice-section__text';
+
+  const title = document.createElement('span');
+  title.className = 'practice-section__title';
+  title.textContent = sectionData.category || 'Practice set';
+  textWrapper.append(title);
+
+  if (sectionData.description) {
+    const description = document.createElement('span');
+    description.className = 'practice-section__description';
+    description.textContent = sectionData.description;
+    textWrapper.append(description);
+  }
+
+  const icon = createChevronIcon();
+
+  toggle.append(textWrapper);
+  toggle.append(icon);
+
+  const toggleId = `practice-toggle-${sectionIdCounter++}`;
+  const panelId = `${toggleId}-panel`;
+  toggle.id = toggleId;
+  toggle.setAttribute('aria-controls', panelId);
+
+  const savedState = sectionState.get(sectionData.__id);
+  const shouldExpand = forceExpand
+    ? true
+    : savedState
+    ? savedState.expanded
+    : true;
+  toggle.setAttribute('aria-expanded', shouldExpand ? 'true' : 'false');
+
+  header.append(toggle);
+  section.append(header);
+
+  const panel = document.createElement('div');
+  panel.className = 'practice-section__panel practice-section__panel--alphabet';
+  panel.id = panelId;
+  panel.setAttribute('role', 'region');
+  panel.setAttribute('aria-labelledby', toggleId);
+  panel.hidden = !shouldExpand;
+  panel.setAttribute('aria-hidden', shouldExpand ? 'false' : 'true');
+
+  const grid = document.createElement('div');
+  grid.className = 'alphabet-grid';
+
+  letters.forEach(letter => {
+    const button = createSpeechButton(letter, { compact: true });
+    if (button) {
+      button.classList.add('alphabet-card');
+      grid.append(button);
+    }
+  });
+
+  if (!grid.children.length) {
+    return null;
+  }
+
+  panel.append(grid);
+  section.append(panel);
+
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    const next = !expanded;
+    toggle.setAttribute('aria-expanded', String(next));
+    panel.hidden = !next;
+    panel.setAttribute('aria-hidden', String(!next));
+    sectionState.set(sectionData.__id, { expanded: next });
+  });
+
+  return section;
+}
+
 function createPracticeSection(sectionData, { forceExpand = false } = {}) {
+  if (sectionData && sectionData.layout === 'alphabet') {
+    return createAlphabetSection(sectionData, { forceExpand });
+  }
+
   if (!sectionData || !Array.isArray(sectionData.rows) || !sectionData.rows.length) {
     return null;
   }

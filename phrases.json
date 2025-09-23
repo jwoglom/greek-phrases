@@ -398,5 +398,324 @@
         ]
       }
     ]
+  },
+  {
+    "category": "Greek Alphabet",
+    "description": "Reference each letter with its English pronunciation.",
+    "layout": "alphabet",
+    "rows": [
+      {
+        "title": "Α α",
+        "summary": "Alpha",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Α α",
+            "english": "Alpha",
+            "speech": "άλφα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Β β",
+        "summary": "Beta",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Β β",
+            "english": "Beta",
+            "speech": "βήτα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Γ γ",
+        "summary": "Gamma",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Γ γ",
+            "english": "Gamma",
+            "speech": "γάμμα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Δ δ",
+        "summary": "Delta",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Δ δ",
+            "english": "Delta",
+            "speech": "δέλτα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Ε ε",
+        "summary": "Epsilon",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Ε ε",
+            "english": "Epsilon",
+            "speech": "έψιλον",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Ζ ζ",
+        "summary": "Zeta",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Ζ ζ",
+            "english": "Zeta",
+            "speech": "ζήτα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Η η",
+        "summary": "Eta",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Η η",
+            "english": "Eta",
+            "speech": "ήτα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Θ θ",
+        "summary": "Theta",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Θ θ",
+            "english": "Theta",
+            "speech": "θήτα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Ι ι",
+        "summary": "Iota",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Ι ι",
+            "english": "Iota",
+            "speech": "ιώτα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Κ κ",
+        "summary": "Kappa",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Κ κ",
+            "english": "Kappa",
+            "speech": "κάππα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Λ λ",
+        "summary": "Lambda",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Λ λ",
+            "english": "Lambda",
+            "speech": "λάμδα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Μ μ",
+        "summary": "Mu",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Μ μ",
+            "english": "Mu",
+            "speech": "μι",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Ν ν",
+        "summary": "Nu",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Ν ν",
+            "english": "Nu",
+            "speech": "νι",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Ξ ξ",
+        "summary": "Xi",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Ξ ξ",
+            "english": "Xi",
+            "speech": "ξι",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Ο ο",
+        "summary": "Omicron",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Ο ο",
+            "english": "Omicron",
+            "speech": "όμικρον",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Π π",
+        "summary": "Pi",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Π π",
+            "english": "Pi",
+            "speech": "πι",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Ρ ρ",
+        "summary": "Rho",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Ρ ρ",
+            "english": "Rho",
+            "speech": "ρο",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Σ σ / ς",
+        "summary": "Sigma",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Σ σ / ς",
+            "english": "Sigma",
+            "speech": "σίγμα",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Τ τ",
+        "summary": "Tau",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Τ τ",
+            "english": "Tau",
+            "speech": "ταυ",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Υ υ",
+        "summary": "Upsilon",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Υ υ",
+            "english": "Upsilon",
+            "speech": "ύψιλον",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Φ φ",
+        "summary": "Phi",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Φ φ",
+            "english": "Phi",
+            "speech": "φι",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Χ χ",
+        "summary": "Chi",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Χ χ",
+            "english": "Chi",
+            "speech": "χι",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Ψ ψ",
+        "summary": "Psi",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Ψ ψ",
+            "english": "Psi",
+            "speech": "ψι",
+            "lang": "el-GR"
+          }
+        ]
+      },
+      {
+        "title": "Ω ω",
+        "summary": "Omega",
+        "variantsLabel": false,
+        "variants": [
+          {
+            "greek": "Ω ω",
+            "english": "Omega",
+            "speech": "ωμέγα",
+            "lang": "el-GR"
+          }
+        ]
+      }
+    ]
   }
 ]
